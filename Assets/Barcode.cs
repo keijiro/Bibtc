@@ -2,21 +2,41 @@ using UnityEngine;
 
 namespace Bibtc {
 
+[ExecuteInEditMode]
 public sealed class Barcode : MonoBehaviour
 {
-    MaterialPropertyBlock _block;
+    [SerializeField] Shader _shader = null;
 
-    void Start()
-      => _block = new MaterialPropertyBlock();
+    Material _material;
+
+    void OnDestroy()
+    {
+        if (_material != null)
+            if (Application.isPlaying)
+                Destroy(_material);
+            else
+                DestroyImmediate(_material);
+    }
 
     void Update()
     {
-        var tc = (ulong)(Time.timeAsDouble * 1000);
-        var r = GetComponent<Renderer>();
-        r.GetPropertyBlock(_block);
-        _block.SetInt("_Code1", (int)tc);
-        _block.SetInt("_Code2", (int)tc);
-        r.SetPropertyBlock(_block);
+        if (_material == null)
+        {
+            _material = new Material(_shader);
+            _material.hideFlags = HideFlags.DontSave;
+        }
+
+        var tc = (ulong)(Time.timeAsDouble * 705600000);
+        _material.SetInteger("_Code1", (int)(tc      ));
+        _material.SetInteger("_Code2", (int)(tc >> 32));
+    }
+
+    void OnRenderObject()
+    {
+        if (_material == null) return;
+
+        _material.SetPass(0);
+        Graphics.DrawProceduralNow(MeshTopology.Triangles, 6, 1);
     }
 }
 
