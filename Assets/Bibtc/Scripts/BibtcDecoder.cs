@@ -8,21 +8,16 @@ public sealed class BibtcDecoder : MonoBehaviour
     [SerializeField] VideoPlayer _source = null;
     [SerializeField, HideInInspector] ComputeShader _shader = null;
 
+    public ulong TimeFlicks { get; private set; }
+    public double TimeSeconds { get; private set; }
+
     ComputeBuffer _buffer;
 
     void Start()
-    {
-        _buffer = new ComputeBuffer(2, sizeof(uint));
-    }
+      => _buffer = new ComputeBuffer(2, sizeof(uint));
 
     void OnDestroy()
-    {
-        if (_buffer != null)
-        {
-            _buffer.Dispose();
-            _buffer = null;
-        }
-    }
+      => _buffer?.Dispose(); 
 
     void Update()
     {
@@ -35,10 +30,8 @@ public sealed class BibtcDecoder : MonoBehaviour
         var temp = new uint[2];
         _buffer.GetData(temp);
 
-        var tc = (ulong)temp[0] | ((ulong)temp[1] << 32);
-        var time = tc / 705600000.0;
-
-        Debug.Log($"{tc:X} / {time}");
+        TimeFlicks = (ulong)temp[0] | ((ulong)temp[1] << 32);
+        TimeSeconds = TimeFlicks / 705600000.0;
     }
 }
 
