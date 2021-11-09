@@ -25,3 +25,5 @@ How this project works
   verified it decodes perfectly synched timecode.
 
 [Flicks]: https://github.com/facebookarchive/Flicks
+
+![Bibtc](https://user-images.githubusercontent.com/343936/140901719-647ec658-db5a-4b35-8ef7-d8222e5910b5.png)
