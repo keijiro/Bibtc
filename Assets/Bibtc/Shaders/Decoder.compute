@@ -12,14 +12,14 @@ void Decode(uint3 id : SV_DispatchThreadID)
     uint lo = 0;
     for (uint i = 0; i < 32; i++)
     {
-        float4 c = Source[uint2(0, i * height / 64)];
+        float4 c = Source[uint2(0, (31 - i) * height / 64)];
         lo |= (dot(c.rgb, 1.0 / 3) > 0.5) << i;
     }
 
     uint hi = 0;
     for (i = 0; i < 32; i++)
     {
-        float4 c = Source[uint2(0, (i + 32) * height / 64)];
+        float4 c = Source[uint2(0, (63 - i) * height / 64)];
         hi |= (dot(c.rgb, 1.0 / 3) > 0.5) << i;
     }
 

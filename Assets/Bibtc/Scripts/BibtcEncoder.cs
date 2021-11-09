@@ -29,6 +29,8 @@ public sealed class BibtcEncoder : MonoBehaviour
         var tc = (ulong)(Time.timeAsDouble * 705600000);
         _material.SetInteger("_Code1", (int)(tc      ));
         _material.SetInteger("_Code2", (int)(tc >> 32));
+
+        Debug.Log($"{tc:X}");
     }
 
     void OnRenderObject()

@@ -35,7 +35,10 @@ public sealed class BibtcDecoder : MonoBehaviour
         var temp = new uint[2];
         _buffer.GetData(temp);
 
-        Debug.Log($"{temp[0]:X}-{temp[1]:X}");
+        var tc = ((ulong)temp[0] << 32) | (ulong)temp[1];
+        var time = tc / 705600000.0;
+
+        Debug.Log($"{tc:X} / {time}");
     }
 }
 
