@@ -3,7 +3,7 @@ using UnityEngine.Video;
 
 namespace Bibtc {
 
-public sealed class BibtcDecoder : MonoBehaviour
+public sealed class TimecodeDecoder : MonoBehaviour
 {
     [SerializeField] VideoPlayer _source = null;
     [SerializeField, HideInInspector] ComputeShader _shader = null;

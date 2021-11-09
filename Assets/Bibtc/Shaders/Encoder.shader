@@ -1,4 +1,4 @@
-Shader "Bibtc/Barcode"
+Shader "Hidden/Bibtc/Encoder"
 {
     CGINCLUDE
 

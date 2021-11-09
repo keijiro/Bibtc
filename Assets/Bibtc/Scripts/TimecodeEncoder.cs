@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Bibtc {
 
-public sealed class BibtcEncoder : MonoBehaviour
+public sealed class TimecodeEncoder : MonoBehaviour
 {
     [SerializeField, HideInInspector] Shader _shader = null;
 

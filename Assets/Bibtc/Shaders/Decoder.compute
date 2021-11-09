@@ -1,4 +1,4 @@
-#pragma kernel Decode
+#pragma kernel Decoder
 
 Texture2D<float4> Source;
 RWStructuredBuffer<uint> Output;
@@ -15,7 +15,7 @@ uint ReadUInt(uint offs, uint height)
 }
 
 [numthreads(1, 1, 1)]
-void Decode(uint3 id : SV_DispatchThreadID)
+void Decoder(uint3 id : SV_DispatchThreadID)
 {
     uint width, height;
     Source.GetDimensions(width, height);
