@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 241297609}
   - component: {fileID: 241297610}
   m_Layer: 0
-  m_Name: Barcode
+  m_Name: Encoder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

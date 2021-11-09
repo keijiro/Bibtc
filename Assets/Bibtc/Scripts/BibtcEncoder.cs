@@ -3,9 +3,9 @@ using UnityEngine;
 namespace Bibtc {
 
 [ExecuteInEditMode]
-public sealed class Barcode : MonoBehaviour
+public sealed class BibtcEncoder : MonoBehaviour
 {
-    [SerializeField] Shader _shader = null;
+    [SerializeField, HideInInspector] Shader _shader = null;
 
     Material _material;
 

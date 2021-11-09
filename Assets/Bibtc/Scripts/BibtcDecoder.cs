@@ -3,10 +3,10 @@ using UnityEngine.Video;
 
 namespace Bibtc {
 
-public sealed class BarcodeDecoder : MonoBehaviour
+public sealed class BibtcDecoder : MonoBehaviour
 {
     [SerializeField] VideoPlayer _source = null;
-    [SerializeField] ComputeShader _shader = null;
+    [SerializeField, HideInInspector] ComputeShader _shader = null;
 
     ComputeBuffer _buffer;
 
