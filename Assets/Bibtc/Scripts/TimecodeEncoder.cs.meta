@@ -5,7 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - _shader: {fileID: 4800000, guid: 4fe544dabbe194e539e5801147849316, type: 3}
-  executionOrder: 0
+  executionOrder: -400
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

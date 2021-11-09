@@ -10,6 +10,7 @@ public sealed class TimecodeDecoder : MonoBehaviour
 
     public ulong TimeFlicks { get; private set; }
     public double TimeSeconds { get; private set; }
+    public Texture Texture { get; private set; }
 
     ComputeBuffer _buffer;
 
@@ -17,13 +18,23 @@ public sealed class TimecodeDecoder : MonoBehaviour
       => _buffer = new ComputeBuffer(2, sizeof(uint));
 
     void OnDestroy()
-      => _buffer?.Dispose(); 
+    {
+        if (Texture != null) Destroy(Texture);
+
+        _buffer?.Dispose(); 
+    }
 
     void Update()
     {
-        if (_source.texture == null) return;
+        var src = _source.texture;
+        if (src == null) return;
 
-        _shader.SetTexture(0, "Source", _source.texture);
+        if (Texture == null)
+            Texture = new Texture2D(src.width, src.height, TextureFormat.RGBA32, false);
+
+        Graphics.CopyTexture(src, Texture);
+
+        _shader.SetTexture(0, "Source", Texture);
         _shader.SetBuffer(0, "Output", _buffer);
         _shader.Dispatch(0, 1, 1, 1);
 

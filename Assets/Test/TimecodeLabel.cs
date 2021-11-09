@@ -8,6 +8,6 @@ public sealed class TimecodeLabel : MonoBehaviour
 
     void Update()
       => GetComponent<Text>().text = _encoder != null ?
-        $"{_encoder.TimeSeconds,8:0.00} : {_encoder.TimeFlicks:X16}" :
-        $"{_decoder.TimeSeconds,8:0.00} : {_decoder.TimeFlicks:X16}";
+        $"Encoded: {_encoder.TimeSeconds:0.00} ({_encoder.TimeFlicks:X16})" :
+        $"Decoded: {_decoder.TimeSeconds:0.00} ({_decoder.TimeFlicks:X16})";
 }

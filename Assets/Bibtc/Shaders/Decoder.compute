@@ -8,7 +8,8 @@ uint ReadUInt(uint offs, uint height)
     uint acc = 0;
     for (uint i = 0; i < 32; i++)
     {
-        float4 c = Source[uint2(0, (63 - offs - i) * height / 64)];
+        uint y = (63 - offs - i) * height / 64 + height / 128;
+        float4 c = Source[uint2(1, y)];
         acc |= (dot(c.rgb, 1.0 / 3) > 0.5) << i;
     }
     return acc;
